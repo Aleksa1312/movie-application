@@ -1,11 +1,16 @@
 import { FC } from "react";
 
-import Image, { ImageProps } from "next/image";
-
-interface ImageBackgroundProps extends ImageProps {}
+interface ImageBackgroundProps extends React.HTMLAttributes<HTMLDivElement> {
+    image: string;
+}
 
 const ImageBackground: FC<ImageBackgroundProps> = (props) => {
-    return <Image className="fixed h-full w-full " src={props.src} width={1920} height={1080} alt={props.alt} />;
+    return (
+        <div
+            className={`${props.className} fixed top-0 left-0 h-full w-full`}
+            style={{ backgroundImage: `url("${props.image}")` }}
+        >{props.children}</div>
+    );
 };
 
 export default ImageBackground;
